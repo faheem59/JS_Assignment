@@ -3,7 +3,7 @@ const fetchWithExponentialBackoff = (url, maxRetries) => {
         fetch(url)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
+                    console.log(`HTTP error! Status: ${response.status}`);
                 }
                 return response.json();
             });
@@ -12,7 +12,7 @@ const fetchWithExponentialBackoff = (url, maxRetries) => {
         return fetchUrl()
             .catch(error => {
                 if (retriesLeft > 0) {
-                    const delay = Math.pow(2, maxRetries - retriesLeft) * 1000; // Exponential backoff
+                    const delay = Math.pow(2, maxRetries - retriesLeft) * 1000; 
                     return new Promise(resolve => setTimeout(resolve, delay))
                         .then(() => attemptFetch(retriesLeft - 1));
                 } else {

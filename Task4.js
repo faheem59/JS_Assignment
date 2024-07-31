@@ -3,7 +3,7 @@ const fetchWithRetry = (url, retries) => new Promise((resolve, reject) => {
         fetch(url)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
+                    console.log(`HTTP error! Status: ${response.status}`);
                 }
                 return response.json();
             })
@@ -22,6 +22,6 @@ const fetchWithRetry = (url, retries) => new Promise((resolve, reject) => {
 });
 
 
-fetchWithRetry('https://fakestoreapi.com/products', 3)
+fetchWithRetry('https://fakestoreapi.com/product', 3)
     .then(data => console.log('Data fetched successfully:', data))
     .catch(error => console.error('Error:', error));
