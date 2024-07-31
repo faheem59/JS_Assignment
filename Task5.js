@@ -1,8 +1,8 @@
 const fetchWithTimeout = (url, timeout) => {
     //check timeout Promise
-    const timeoutPromise = new Promise((_, reject) =>
+    const timeoutPromise = new Promise((reject) =>
         setTimeout(() =>
-            reject(('Request timed out')),
+            reject(('timed out')),
             timeout)
     );
 
@@ -10,7 +10,7 @@ const fetchWithTimeout = (url, timeout) => {
     const fetchPromise = fetch(url)
         .then(response => {
             if (!response.ok) {
-                console.log(`error! Status: ${response.status}`);
+                console.log(`error! ${response.status}`);
             }
             return response.json();
         });

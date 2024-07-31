@@ -8,7 +8,7 @@ const fetchAllWithErrors = (urls) => {
             return response.json();
         });
 
-    
+    //function, and it’s responsible for creating an array of promises based on the provided URLs. 
     const fetchPromises = urls.map(url => fetchUrl(url));
 
    
@@ -18,6 +18,6 @@ const fetchAllWithErrors = (urls) => {
 };
 
 
-fetchAllWithErrors(['https://fakestoreapi.com/products', 'https://fakestoreapi.com/products/1'])
+fetchAllWithErrors(['https://fakestoreapi.com/products', 'https://fakestoreapi.com/product'])
     .then(results => console.log('All data fetched successfully:', results))
     .catch(error => console.error('Error:', error));

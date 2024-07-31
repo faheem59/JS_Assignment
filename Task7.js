@@ -12,6 +12,8 @@ const fetchWithRace = (urls) => {
             .catch(() => null) 
     );
 
+    //return promice race to handle
+
     return Promise.race([
         ...fetchPromises,
         timeoutPromise

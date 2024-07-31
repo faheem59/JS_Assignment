@@ -7,6 +7,7 @@ const fetchAnyWithErrors = (urls) => {
                 }
                 return resposne.json();
             });
+    //function, and it’s responsible for creating an array of promises based on the provided URLs. 
         const fetchPromise = urls.map(url =>
             fetchUrl(url).catch(error => ({ error: error.message }))
         );
