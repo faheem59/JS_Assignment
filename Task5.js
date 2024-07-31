@@ -1,6 +1,6 @@
 const fetchWithTimeout = (url, timeout) => {
     const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('Request timed out')), timeout)
+        setTimeout(() => reject(('Request timed out')), timeout)
     );
 
     
