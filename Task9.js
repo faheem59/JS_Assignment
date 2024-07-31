@@ -4,7 +4,7 @@ const fetchSequentially = (urls) => {
         fetch(url)
             .then(response => {
                 if (!response.ok) {
-                    console.log(`HTTP error! Status: ${response.status}`);
+                    console.log(`error! Status: ${response.status}`);
                 }
                 return response.json();
             });

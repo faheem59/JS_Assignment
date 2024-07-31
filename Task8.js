@@ -3,7 +3,7 @@ const fetchAnyWithErrors = (urls) => {
         fetch(url)
             .then(resposne => {
                 if (!resposne.ok) {
-                    console.log(`HTTP error! Status: ${response.status}`)
+                    console.log(`error! Status: ${response.status}`)
                 }
                 return resposne.json();
             });

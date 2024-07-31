@@ -3,7 +3,7 @@ const fetchWithRetry = (url, retries) => new Promise((resolve, reject) => {
         fetch(url)
             .then(response => {
                 if (!response.ok) {
-                    console.log(`HTTP error! Status: ${response.status}`);
+                    console.log(`error! Status: ${response.status}`);
                 }
                 return response.json();
             })
