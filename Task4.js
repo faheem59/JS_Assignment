@@ -9,6 +9,7 @@ const fetchWithRetry = (url, retries) => new Promise((resolve, reject) => {
             })
             .then(data => resolve(data))
             .catch(error => {
+                // cehck attempts 
                 if (attempts > 0) {
                     console.log(`Retrying... Attempts left: ${attempts}`);
                     attemptFetch(attempts - 1);
