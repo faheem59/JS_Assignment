@@ -24,7 +24,7 @@ const conditionalChaining = (initialUrl, secondaryUrl1, secondaryUrl2) => {
         });
 };
 
-
+// call conditionig the cahining one by one 
 conditionalChaining('https://fakestoreapi.com/products', 'https://fakestoreapi.com/products/1', 'https://fakestoreapi.com/products/2')
     .then(data => console.log('Data fetched:', data))
     .catch(error => console.error('Error:', error));
