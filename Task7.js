@@ -1,7 +1,5 @@
-const fetchWithRace = (urls, timeout) => {
-    const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('Request timed out')), timeout)
-    );
+const fetchWithRace = (urls) => {
+   
 
     const fetchPromises = urls.map(url =>
         fetch(url)
@@ -20,7 +18,7 @@ const fetchWithRace = (urls, timeout) => {
     ])
         .then(result => {
             if (result === null) {
-                return Promise.reject(new Error('All requests failed'));
+                return Promise.reject(('All requests failed'));
             }
             return result;
         });
