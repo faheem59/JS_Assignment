@@ -9,9 +9,10 @@ const fetchWithTimeout = (url, timeout) => {
     //fetch promeise
     const fetchPromise = fetch(url)
         .then(response => {
-            if (!response.ok) {
-                console.log(`error! ${response.status}`);
+            if (!response) {
+                console.log(`error! ${response}`);
             }
+            // if fetch promise is reoslve then return the data;
             return response.json();
         });
     return Promise.race([fetchPromise, timeoutPromise]);

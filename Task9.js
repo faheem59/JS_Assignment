@@ -1,10 +1,10 @@
 const fetchSequentially = (urls) => {
-    
+    // fetch url for 
     const fetchUrl = url =>
         fetch(url)
             .then(response => {
-                if (!response.ok) {
-                    console.log(`error! Status: ${response.status}`);
+                if (!response) {
+                    console.log(`error! ${response}`);
                 }
                 return response.json();
             });

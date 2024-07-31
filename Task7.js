@@ -1,18 +1,19 @@
 const fetchWithRace = (urls) => {
-   
-// fetch Promise
-    const fetchPromises = urls.map(url =>
-        fetch(url)
+    const fetchPromises = [];
+
+    for (const url of urls) {
+        const fetchPromise = fetch(url)
             .then(response => {
-                if (!response.ok) {
-                    console.log(`error! Status: ${response.status}`);
+                if (!response) {
+                    console.log(`Error ${response}`);
+                    return null;
                 }
                 return response.json();
             })
-            .catch(() => null) 
-    );
+            .catch(() => null);
 
-    //return promice race to handle
+        fetchPromises.push(fetchPromise);
+    }
 
     return Promise.race([
         ...fetchPromises,
@@ -20,7 +21,7 @@ const fetchWithRace = (urls) => {
     ])
         .then(result => {
             if (result === null) {
-                return Promise.reject(('All requests failed'));
+                return Promise.reject('All requests failed');
             }
             return result;
         });

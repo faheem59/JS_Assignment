@@ -1,13 +1,15 @@
 const conditionalChaining = (initialUrl, secondaryUrl1, secondaryUrl2) => {
+
+    // fetch url first 
     const fetchUrl = (url) =>
         fetch(url)
             .then(response => {
-                if (!response.ok) {
-                   console.log(`error! Status: ${response.status}`);
+                if (!response) {
+                   console.log(`error!${response}`);
                 }
                 return response.json();
             });
-
+    // take the initalurl if resolve then return fetchurl
     return fetchUrl(initialUrl)
         .then(initialData => {
             const shouldFetchSecondaryUrl1 = initialData.someCondition;

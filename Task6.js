@@ -2,14 +2,17 @@ const fetchAllWithErrors = (urls) => {
     
     const fetchUrl = url => fetch(url)
         .then(response => {
-            if (!response.ok) {
-                console.log(`error! Status: ${response.status}`);
+            if (!response) {
+                console.log(`error! Status: ${response}`);
             }
             return response.json();
         });
 
     //function, and it’s responsible for creating an array of promises based on the provided URLs. 
-    const fetchPromises = urls.map(url => fetchUrl(url));
+    for (const url of urls) {
+        const fetchPromise = fetchUrl(url);
+        fetchPromises.push(fetchPromise);
+    }
 
    
     return Promise.all(fetchPromises)

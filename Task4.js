@@ -1,27 +1,30 @@
-const fetchWithRetry = (url, retries) => new Promise((resolve, reject) => {
+const fetchWithRetry = (url, retry) => new Promise((resolve, reject) => {
 
     // attempts to fetch 
     const attemptFetch = (attempts) => {
+        // fetch the url first
         fetch(url)
             .then(response => {
-                if (!response.ok) {
-                    console.log(`error: ${response.status}`);
+                if (!response) {
+                    console.log(`error: ${response}`);
                 }
+                // return response if url is correct
                 return response.json();
             })
             .then(data => resolve(data))
             .catch(error => {
-                // cehck attempts 
+                // cehck attempts if url is not corrct then count the attempts first and throw error
                 if (attempts > 0) {
                     console.log(`Retrying... Attempts left: ${attempts}`);
+                    // if attemp is greater then count and retrying the attem
                     attemptFetch(attempts - 1);
                 } else {
-                    reject(`Failed after ${retries} retries: ${error.message}`);
+                    reject(`Failed after ${retry} retries: ${error.message}`);
                 }
             });
     };
-
-    attemptFetch(retries);
+// call the attempt
+    attemptFetch(retry);
 });
 
 
