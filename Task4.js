@@ -1,5 +1,5 @@
 const fetchWithRetry = (url, retries) => new Promise((resolve, reject) => {
-    const attemptFetch = (attemptsLeft) => {
+    const attemptFetch = (attempts) => {
         fetch(url)
             .then(response => {
                 if (!response.ok) {
@@ -9,9 +9,9 @@ const fetchWithRetry = (url, retries) => new Promise((resolve, reject) => {
             })
             .then(data => resolve(data))
             .catch(error => {
-                if (attemptsLeft > 0) {
-                    console.log(`Retrying... Attempts left: ${attemptsLeft}`);
-                    attemptFetch(attemptsLeft - 1);
+                if (attempts > 0) {
+                    console.log(`Retrying... Attempts left: ${attempts}`);
+                    attemptFetch(attempts - 1);
                 } else {
                     reject(`Failed after ${retries} retries: ${error.message}`);
                 }
