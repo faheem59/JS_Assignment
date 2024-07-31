@@ -1,7 +1,7 @@
 const fetchWithRetry = (url, retry) => new Promise((resolve, reject) => {
 
     // attempts to fetch 
-    const attemptFetch = (attempts) => {
+    const attempt = (attempts) => {
         // fetch the url first
         fetch(url)
             .then(response => {
@@ -17,14 +17,14 @@ const fetchWithRetry = (url, retry) => new Promise((resolve, reject) => {
                 if (attempts > 0) {
                     console.log(`Retrying... Attempts left: ${attempts}`);
                     // if attemp is greater then count and retrying the attem
-                    attemptFetch(attempts - 1);
+                    attempt(attempts - 1);
                 } else {
                     reject(`Failed after ${retry} retries: ${error.message}`);
                 }
             });
     };
 // call the attempt
-    attemptFetch(retry);
+    attempt(retry);
 });
 
 

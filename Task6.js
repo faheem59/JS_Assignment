@@ -14,7 +14,7 @@ const fetchAllWithErrors = (urls) => {
         fetchPromises.push(fetchPromise);
     }
 
-   
+   // festch all the promise here
     return Promise.all(fetchPromises)
         .then(results => results)  
         .catch(error => Promise.reject(error));  

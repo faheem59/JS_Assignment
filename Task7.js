@@ -15,6 +15,7 @@ const fetchWithRace = (urls) => {
         fetchPromises.push(fetchPromise);
     }
 
+    // if any resolve then return or if rejcet then return reject msg
     return Promise.race([
         ...fetchPromises,
         timeoutPromise
